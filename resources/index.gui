@@ -1,0 +1,119 @@
+<!-- begin drawing tick marks -->
+<svg>
+  <defs>
+    <!-- define hour markers -->
+    <symbol id="hour_marker_one">
+      <g id="container">
+        <line x1="0" y1="-47%" x2="0" y2="-50%+1" stroke-width="4" fill="inherit" />
+        <line x1="0" y1="-47%" x2="0" y2="-48%+1" stroke-width="4" fill="inherit" stroke-linecap="round" />
+      </g>
+    </symbol>
+    
+    <!-- hour marker rotation -->
+    <symbol id="hour_marker_quarter">
+      <g id="container">
+        <use href="#hour_marker_one" fill="inherit" />
+        <use href="#hour_marker_one" fill="inherit">
+          <set href="container" attributeName="transform" to="rotate(30)" />
+        </use>
+        <use href="#hour_marker_one" fill="inherit">
+          <set href="container" attributeName="transform" to="rotate(60)" />
+        </use>
+      </g>
+    </symbol>
+    
+    <!-- rotate other set of hour markers -->
+    <symbol id="hour_marker">
+      <use href="#hour_marker_quarter" fill="inherit" />
+      <use href="#hour_marker_quarter" fill="inherit">
+        <set href="container" attributeName="transform" to="rotate(90)" />
+      </use>
+      <use href="#hour_marker_quarter" fill="inherit">
+        <set href="container" attributeName="transform" to="rotate(180)" />
+      </use>
+      <use href="#hour_marker_quarter" fill="inherit">
+        <set href="container" attributeName="transform" to="rotate(270)" />
+      </use>
+    </symbol>
+
+    <symbol id="min_marker_one">
+      <g id="container">
+        <line x1="0" y1="-49%" x2="0" y2="-50%+1" stroke-width="1" fill="inherit" />
+        <line x1="0" y1="-49%" x2="0" y2="-48%+1" stroke-width="1" fill="inherit" />
+      </g>
+    </symbol>
+
+    <symbol id="min_marker_penta">
+      <g id="container">
+        <use href="#min_marker_one" fill="inherit">
+          <set href="container" attributeName="transform" to="rotate(6)" />
+        </use>
+        <use href="#min_marker_one" fill="inherit">
+          <set href="container" attributeName="transform" to="rotate(12)" />
+        </use>
+        <use href="#min_marker_one" fill="inherit">
+          <set href="container" attributeName="transform" to="rotate(18)" />
+        </use>
+        <use href="#min_marker_one" fill="inherit">
+          <set href="container" attributeName="transform" to="rotate(24)" />
+        </use>
+      </g>
+    </symbol>
+
+    <symbol id="min_marker_quarter">
+      <g id="container">
+        <use href="#min_marker_penta" fill="inherit" />
+        <use href="#min_marker_penta" fill="inherit">
+          <set href="container" attributeName="transform" to="rotate(30)" />
+        </use>
+        <use href="#min_marker_penta" fill="inherit">
+          <set href="container" attributeName="transform" to="rotate(60)" />
+        </use>
+      </g>
+    </symbol>
+
+    <symbol id="min_marker">
+      <use href="#min_marker_quarter" fill="inherit" />
+      <use href="#min_marker_quarter" fill="inherit">
+        <set href="container" attributeName="transform" to="rotate(90)" />
+      </use>
+      <use href="#min_marker_quarter" fill="inherit">
+        <set href="container" attributeName="transform" to="rotate(180)" />
+      </use>
+      <use href="#min_marker_quarter" fill="inherit">
+        <set href="container" attributeName="transform" to="rotate(270)" />
+      </use>
+    </symbol>
+  </defs>
+  <!-- end symbols -->
+  
+  <!-- center markers -->
+  <g transform="translate(50%,50%)">
+    <use href="#hour_marker" fill="#5a5a5a" />
+    <use href="#min_marker" fill="#5a5a5a" />
+  </g>
+  <text id="title" x="50%" y="30%" fill="#cccccc" font-size="24" font-family="Seville-Bold-Italic" text-anchor="middle" text-length="3">Sweepr
+  </text>
+  <circle id="batt" cx="5%" cy="5%" r="5" fill="black" />
+  <text id="myClock" x="50%" y="85%" fill="#cccccc" font-size="26" font-family="SevilleSharp-Regular" text-anchor="middle" text-length="20">
+  </text>
+  <rect x="70%" y="46%" width="100" height="30" fill="black" />
+  <text id="day" x="80%" y="55%" fill="#cccccc" font-size="24" font-family="SevilleSharp-Regular" text-anchor="middle" text-length="3">
+  </text>
+  <text id="date" x="93%" y="55%" font-size="24" font-family="SevilleSharp-Regular" text-anchor="middle" text-length="3" fill="#cccccc">
+  </text>
+  <g id="mins" pointer-events="visible" transform="translate(50%,50%)">
+    <!--<rect x="$-2" y="-110" width="6" height="110" fill="#ffffff" />-->
+    <line x1="0" y1="$-2" x2="0" y2="$-120" stroke-linecap="round" stroke-width="7" fill="#ffffff" />
+  </g>
+  <g id="hours" pointer-events="visible" transform="translate(50%,50%)">
+    <!--<rect x="$-2" y="-75" width="6" height="75" fill="#ffffff" />-->
+    <line x1="0" y1="$-2" x2="0" y2="$-95" stroke-linecap="round" stroke-width="5" fill="#ffffff" />
+  </g>
+  <g id="secs" pointer-events="visible" transform="translate(50%,50%) ">
+    <!--<rect id="sh" x="$-2" y="-120" width="4" height="120" fill="tomato" />-->
+    <line id="sh" x1="0" y1="$-2" x2="0" y2="-120" stroke-linecap="round" stroke-width="5" />
+  </g>
+  <circle id="spindle" cx="50%" cy="50%" r="8" />
+  <circle cx="50%" cy="50%" r="5" fill="black" />
+</svg>

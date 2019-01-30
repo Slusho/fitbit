@@ -1,0 +1,10 @@
+.defaultText {
+  font-size: 32;
+  font-family: System-Regular;
+  font-weight: regular;
+}
+
+#background {
+  width: 100%;
+  height: 100%;
+}
