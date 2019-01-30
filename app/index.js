@@ -46,10 +46,15 @@ function minutesToAngle(minutes) {
 
 // Returns an angle (0-360) for seconds
 function secondsToAngle(seconds, milli) {
-  if (settings_get === true) {
-    return (seconds * 6 + (milli / (1000 / 6)))
-  } else {
-    return (seconds * 6 + (milli / (1000)))
+  try{
+    if (settings_get === true) {
+      return (seconds * 6 + (milli / (1000 / 6)))
+    } else {
+      return (seconds * 6 + (milli / (1000)))
+    }
+  }
+  catch(err){
+     return (seconds * 6 + (milli / (1000 / 6)))
   }
 }
 
