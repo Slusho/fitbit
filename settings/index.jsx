@@ -16,10 +16,10 @@ function mySettings(props) {
         />
       </Section>
       <Section
-        title={<Text bold align="center">Second Hand Movement</Text>}>
+        title={<Text bold align="center">Quartz movement</Text>}>
         <Toggle
           settingsKey="toggle"
-          label="Toggle sweep"
+          label="Toggle movement"
         />
       </Section>
     </Page>
