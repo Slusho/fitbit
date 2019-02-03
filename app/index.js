@@ -46,15 +46,15 @@ function minutesToAngle(minutes) {
 
 // Returns an angle (0-360) for seconds
 function secondsToAngle(seconds, milli) {
-  try{
+  try {
     if (settings_get === false) {
       return (seconds * 6 + (milli / (1000 / 6)))
     } else {
       return (seconds * 6 + (milli / (1000)))
     }
   }
-  catch(err){
-     return (seconds * 6 + (milli / (1000 / 6)))
+  catch (err) {
+    return (seconds * 6 + (milli / (1000 / 6)))
   }
 }
 
@@ -64,18 +64,31 @@ function digitalClock(evt) {
   let minutes = evt.getMinutes();
 
   if (preferences.clockDisplay === "12h" && hours > 12) {
-    if(hours == 0){
+    if (hours == 0) {
       hours = 12
-    } else{
-    hours = hours - 12;
+    } else {
+      hours = hours - 12
     }
   }
 
   if (minutes < 10) {
-    minutes = "0" + minutes;
+    minutes = "0" + minutes
   }
+  myClock.text = `${hours}:${minutes}`
+}
 
-  myClock.text = `${hours}:${minutes}`;
+function dayDate(d, weekday, today) {
+  if (d < 10) {
+    myDate.text = "0" + d
+  } else {
+    myDate.text = d
+  }
+  myDay.text = weekday[today.getDay()]
+  if (weekday[today.getDay()] == "Sun") {
+    myDay.style.fill = "tomato"
+  } else {
+    myDay.style.fill = "white"
+  }
 }
 
 // Checks if the settings file is set by user and sets color for the seconds hand, if not, sets the color default to tomato
@@ -121,14 +134,7 @@ function updateClock() {
   secHand.groupTransform.rotate.angle = secondsToAngle(secs, milli)
 
   digitalClock(today)
-
-  myDate.text = d
-  myDay.text = weekday[today.getDay()]
-  if (weekday[today.getDay()] == "Sun") {
-    myDay.style.fill = "tomato";
-  } else {
-    myDay.style.fill = "white";
-  }
+  dayDate(d, weekday, today)
 }
 
 
@@ -169,7 +175,7 @@ messaging.peerSocket.onclose = () => {
 function sweep() {
   updateClock()
   batteryLevel()
-  setTimeout(sweep, time);
+  setTimeout(sweep, time)
 }
 
-sweep();
+sweep()
