@@ -58,18 +58,15 @@ function secondsToAngle(seconds, milli) {
   }
 }
 
-// Digital clock
+// Digital clock 
 function digitalClock(evt) {
   let hours = evt.getHours();
   let minutes = evt.getMinutes();
-  
-  // Check user preferences if set to 12 or 24 hours
+
   if (preferences.clockDisplay === "12h" && hours > 12) {
-    // if hours is 0 (12am) show "12"
-    if (hours == 0){
+    if(hours == 0){
       hours = 12
-    } else {
-    // Show hours in 12h format by subtracting 12
+    } else{
     hours = hours - 12;
     }
   }
@@ -77,25 +74,8 @@ function digitalClock(evt) {
   if (minutes < 10) {
     minutes = "0" + minutes;
   }
-  // Set am or pm
-  if ((preferences.clockDisplay === "12h") && ((hours + 12) > 12)) {
-    minutes = minutes + "p";
-  } else {
-    minutes = minutes + "a";
-  }
 
   myClock.text = `${hours}:${minutes}`;
-}
-
-function dateTime(d, today, weekday) {
-  myDate.text = d
-  myDay.text = weekday[today.getDay()]
-
-  if (weekday[today.getDay()] == "Sun") {
-    myDay.style.fill = "tomato";
-  } else {
-     myDay.style.fill = "white";
-  }
 }
 
 // Checks if the settings file is set by user and sets color for the seconds hand, if not, sets the color default to tomato
@@ -105,7 +85,6 @@ try {
   // Change second hand(sh) and spindle color
   sh.style.fill = color_get
   spindle.style.fill = color_get
-  // Set sweep or quartz movement
   if (settings_get === true) {
     time = 1000
   }
@@ -116,7 +95,6 @@ try {
 } catch (err) {
   sh.style.fill = 'tomato'
   spindle.style.fill = 'tomato'
-  // Set default movement to sweep
   settings_get = false
   console.log(err)
 }
@@ -138,14 +116,19 @@ function updateClock() {
   weekday[5] = 'Fri'
   weekday[6] = 'Sat'
 
-  // Performs arm rotations
   hourHand.groupTransform.rotate.angle = hoursToAngle(hours, mins)
   minHand.groupTransform.rotate.angle = minutesToAngle(mins)
   secHand.groupTransform.rotate.angle = secondsToAngle(secs, milli)
 
-  // Call the digital clock
   digitalClock(today)
-  dateTime(d,today, weekday)
+
+  myDate.text = d
+  myDay.text = weekday[today.getDay()]
+  if (weekday[today.getDay()] == "Sun") {
+    myDay.style.fill = "tomato";
+  } else {
+    myDay.style.fill = "white";
+  }
 }
 
 
